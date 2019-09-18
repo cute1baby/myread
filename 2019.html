@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>2019读书记录</title>
+</head>
+<style>
+html,body{background: #f8f8f8;}
+*{margin: 0; padding: 0;}
+ul,li{list-style: none;}
+
+.app{margin: 30px 30px 0;}
+.app h2{text-align: center; font-size: 28px;color: #359;}
+
+.mode{margin-top: 36px;}
+.mode h3{padding-left: 20px;border-left: 5px solid green;}
+.mode ul{overflow: hidden;margin-bottom: 50px;}
+.mode li{width: 160px; height: 300px; border-radius: 6px; margin-top: 30px;margin-right: 30px; border: 1px solid #999;box-shadow: 2px 3px 8px gray;float: left;overflow: hidden;background: #fff;}
+.inner{width: 160px; height: 200px;margin-bottom: 8px;overflow: hidden;position: relative;}
+.inner .type{position: absolute;right: 0;top: 0;width: 40px;height: 24px;line-height: 24px;text-align: center;font-size: 12px;color: #fff;z-index: 100;background: green;}
+.mode li:hover .cover{transform: scale(1.05);}
+.mode .cover{width: 100%;display: block;transition: transform 0.6s ease;}
+.mode p{line-height: 26px;font-size: 16px;color: #666;margin-left: 6px;}
+.elipsis{overflow: hidden; text-overflow:ellipsis;white-space: nowrap;}
+.read{color: green;font-size: 25px;}
+</style>
+<body>
+<div id="app" class="app">
+	<h2>2019读书记录</h2>
+	<div class="mode" v-for="(category, categoryIndex) in list" :key="category + categoryIndex">
+		<h3>{{category.name}}</h3>
+		<ul>
+			<li v-for="(book, bIndex) in category.classicList" :key="book + bIndex">
+				<div class="inner">
+					<span class="type">{{order[book.type || "3"]}}</span>
+					<img :src="book.cover" class="cover" :alt="book.name">
+				</div>
+				<p class="elipsis">书名：<span>《{{book.name}}》</span></p>
+				<p class="elipsis">作者：<span>{{book.author}}</span></p>
+				<p>已读：<span class="read">{{book.read}}</span>%</p>
+			</li>
+		</ul>
+	</div>
+</div>
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script>
+var order = {
+	"1": "圣经",
+	"2": "绝学",
+	"3": "入门"
+}
+new Vue({
+	el:"#app",
+	data(){
+		return {
+			list: [
+				{
+					name: "修身类",
+					classicList:[
+						{
+							type: "2",
+							name: "变形记",
+							author: "卡夫卡",
+							read: 100,
+							cover: "https://img1.doubanio.com/view/subject/l/public/s1038448.jpg"
+						},
+						{
+							name: "傅雷家书",
+							author: "傅雷",
+							read: 45,
+							cover: "https://www.ppzuowen.com/uploads/allimg/170208/1-1F20Q0464DA.jpg"
+						},
+						{
+							name: "少有人走的路",
+							author: "斯科特.派克",
+							read: 12,
+							cover: "https://img3.doubanio.com/view/subject/l/public/s2144391.jpg"
+						},
+						{
+							name: "曾国藩传",
+							author: "萧一山",
+							read: 0,
+							cover: "https://img3.doubanio.com/view/subject/l/public/s28340220.jpg"
+						},
+					],
+				},
+				{
+					name: "营销类",
+					classicList: [
+						{
+							type: "1",
+							name: "营销管理",
+							author: "科特勒",
+							read: 0,
+							cover: "https://img3.doubanio.com/view/subject/l/public/s3979570.jpg"
+						}
+					]
+				},
+				{
+					name: "金融类",
+					classicList: [
+						{
+							name: "公司理财",
+							author: "斯蒂芬.罗斯",
+							read: 0,
+							cover: "https://img1.doubanio.com/view/subject/l/public/s27258139.jpg"
+						},
+						{
+							name: "货币金融学",
+							author: "弗雷德里克.米什金",
+							read: 0,
+							cover: "https://img3.doubanio.com/view/subject/l/public/s6277651.jpg"
+						},
+						{
+							name: "货币金融学",
+							author: "兹维.博迪",
+							read: 0,
+							cover: "https://img3.doubanio.com/view/subject/l/public/s4118443.jpg"
+						},
+						{
+							name: "期权、期货和其他衍生品",
+							author: "约翰.赫尔",
+							read: 0,
+							cover: "https://img3.doubanio.com/view/subject/l/public/s6883135.jpg"
+						}
+					]
+				}
+			]
+			
+		}
+	}
+})
+</script>
+</body>
+</html>
